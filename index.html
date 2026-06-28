@@ -509,6 +509,7 @@ function submitAuth(){
     closeModal('authModal');
     if(pendingAction==='add') openAddModal();
     if(pendingAction==='edit') toggleEditMode();
+    if(pendingAction==='saveAdmin') saveToFirebase();
   } else {
     document.getElementById('pwError').classList.add('show');
     document.getElementById('pwInput').value='';
@@ -653,7 +654,7 @@ async function saveToFirebase(){
 async function handleSaveChoice(who){
   closeModal('saveChoiceModal');
   if(who==='admin'){
-    await saveToFirebase();
+    requireAuth('saveAdmin');
   } else {
     // ── USER: save everything to localStorage ──
     try{

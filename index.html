@@ -187,6 +187,9 @@ footer strong{color:var(--gold)}
   <p>Thank you for supporting GCP Shop! ❤️</p>
 </footer>
 
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
 <!-- PASSWORD MODAL -->
 <div class="modal-overlay" id="authModal">
   <div class="modal">
@@ -284,13 +287,8 @@ footer strong{color:var(--gold)}
 
   // ── FIREBASE CONFIG ── Replace with your actual project config
   const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
     databaseURL: "https://gcpshop-7c8f9-default-rtdb.firebaseio.com/",
-    projectId: "gcpshop",
-    storageBucket: "YOUR_PROJECT.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    projectId: "gcpshop-7c8f9",
   };
 
   const app = initializeApp(firebaseConfig);

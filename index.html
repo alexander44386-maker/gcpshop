@@ -280,45 +280,6 @@ footer strong{color:var(--gold)}
   </div>
 </div>
 
-<!-- Firebase SDK -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-
-  // ── FIREBASE CONFIG ── Replace with your actual project config
-  const firebaseConfig = {
-    databaseURL: "https://gcpshop-7c8f9-default-rtdb.firebaseio.com/",
-    projectId: "gcpshop-7c8f9",
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-
-  // Expose Firebase save/load to global scope
-  window.firebaseSaveProducts = async function(data){
-    await set(ref(db,'gcp_shop/products'), data);
-  };
-
-  window.firebaseLoadProducts = async function(){
-    const snap = await get(ref(db,'gcp_shop/products'));
-    return snap.exists() ? snap.val() : null;
-  };
-
-  // On load: try pulling Firebase products first
-  (async()=>{
-    try{
-      const remote = await window.firebaseLoadProducts();
-      if(remote && Array.isArray(remote)){
-        // Only override if remote is newer (has data)
-        window._firebaseProducts = remote;
-      }
-    }catch(e){
-      console.warn('Firebase load skipped:', e.message);
-    }
-  })();
-</script>
-
-
 <script>
 /* ═══════════════════════════════════════
    DATA
@@ -377,6 +338,19 @@ const DEFAULTS = [
 
 const PASS = 'gcp2026';
 
+/* ═══════════════════════════════════════
+   SAVE / LOAD
+   Products are stored in Firebase Realtime Database so they're
+   shared across every device that opens this site (no accounts —
+   one global save). localStorage is kept as an offline fallback only.
+═══════════════════════════════════════ */
+
+/* ⚠️ REPLACE this with YOUR Firebase Realtime Database URL.
+   It looks like: https://your-project-id-default-rtdb.firebaseio.com */
+const FIREBASE_DB_URL = "https://gcpshop-7c8f9-default-rtdb.firebaseio.com";
+
+const CLOUD_PRODUCTS_URL = `${FIREBASE_DB_URL}/gcp_shop/products.json`;
+
 let products = loadProducts();
 let favorites = loadFavorites();
 let editMode = false;
@@ -387,6 +361,22 @@ let unsaved = false;
 function loadProducts(){
   try{const s=localStorage.getItem('gcp_products');return s?JSON.parse(s):JSON.parse(JSON.stringify(DEFAULTS))}
   catch{return JSON.parse(JSON.stringify(DEFAULTS))}
+}
+
+async function loadProductsFromCloud(){
+  // Try the cloud save first so the catalog shows up on any device.
+  try{
+    const res = await fetch(CLOUD_PRODUCTS_URL);
+    if(!res.ok) throw new Error("bad response");
+    const remote = await res.json();
+    if(remote && Array.isArray(remote) && remote.length){
+      products = remote;
+      try{ localStorage.setItem('gcp_products', JSON.stringify(products)); }catch(e){}
+    }
+  } catch(e){
+    // Cloud unreachable (offline, or FIREBASE_DB_URL not set yet) — keep local copy.
+    console.warn('Firebase load skipped:', e.message);
+  }
 }
 
 function loadFavorites(){
@@ -635,17 +625,22 @@ function saveChanges(){
 }
 
 async function saveToFirebase(){
-  if(typeof window.firebaseSaveProducts !== 'function'){
-    showToast('Firebase not configured yet.','error');
-    return;
-  }
+  // Always keep a local copy so the page still works offline.
+  try{ localStorage.setItem('gcp_products', JSON.stringify(products)); }catch(e){}
+  try{ localStorage.setItem('gcp_favorites', JSON.stringify(favorites)); }catch(e){}
+
   try{
-    await window.firebaseSaveProducts(products);
-    localStorage.setItem('gcp_favorites', JSON.stringify(favorites));
+    const res = await fetch(CLOUD_PRODUCTS_URL, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(products),
+    });
+    if(!res.ok) throw new Error("bad response");
     markSaved();
     showToast('✔ Saved to Firebase!','success');
   }catch(e){
-    showToast('Firebase save failed: '+e.message,'error');
+    markSaved();
+    showToast('⚠️ Saved on this device only (offline)','error');
   }
 }
 
@@ -696,7 +691,10 @@ function showToast(msg,type='success'){
 /* ═══════════════════════════════════════
    INIT
 ═══════════════════════════════════════ */
-renderCards();
+(async function boot(){
+  await loadProductsFromCloud();
+  renderCards();
+})();
 </script>
 </body>
 </html>

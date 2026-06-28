@@ -263,12 +263,12 @@ footer strong{color:var(--gold)}
       <div class="save-choice-card admin-card" onclick="handleSaveChoice('admin')">
         <div class="save-choice-icon">🔐</div>
         <div class="save-choice-label">Admin</div>
-        <div class="save-choice-desc">Save to Firebase — updates product list for everyone</div>
+        <div class="save-choice-desc">Save — updates product list for everyone</div>
       </div>
       <div class="save-choice-card user-card" onclick="handleSaveChoice('user')">
         <div class="save-choice-icon">👤</div>
         <div class="save-choice-label">User</div>
-        <div class="save-choice-desc">Save to this browser only — favorites &amp; local changes</div>
+        <div class="save-choice-desc">Save for this user</div>
       </div>
     </div>
     <div class="modal-actions" style="margin-top:16px">
@@ -286,8 +286,8 @@ footer strong{color:var(--gold)}
   const firebaseConfig = {
     apiKey: "YOUR_API_KEY",
     authDomain: "YOUR_PROJECT.firebaseapp.com",
-    databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
-    projectId: "YOUR_PROJECT",
+    databaseURL: "https://gcpshop-7c8f9-default-rtdb.firebaseio.com/",
+    projectId: "gcpshop",
     storageBucket: "YOUR_PROJECT.appspot.com",
     messagingSenderId: "YOUR_SENDER_ID",
     appId: "YOUR_APP_ID"

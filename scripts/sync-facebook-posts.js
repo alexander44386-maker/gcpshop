@@ -29,7 +29,7 @@ const FB_PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN;
 const FIREBASE_DB_URL = process.env.FIREBASE_DB_URL;
 
 const PROCESSED_POSTS_PATH = path.join(__dirname, "..", "data", "processed_posts.json");
-const GRAPH_API_VERSION = "v19.0";
+const GRAPH_API_VERSION = "v22.0";
 
 function loadProcessedIds() {
   try {

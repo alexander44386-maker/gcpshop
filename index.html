@@ -107,17 +107,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 @media(min-width:540px){.cards-grid{grid-template-columns:1fr 1fr}}
 @media(min-width:900px){.cards-grid{grid-template-columns:1fr 1fr 1fr}}
 
-.fb-posts-grid{display:grid;grid-template-columns:1fr;gap:12px}
-@media(min-width:540px){.fb-posts-grid{grid-template-columns:1fr 1fr}}
-@media(min-width:900px){.fb-posts-grid{grid-template-columns:1fr 1fr 1fr}}
-.fb-card{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:var(--white);transition:border-color .18s,box-shadow .18s}
-.fb-card:hover{border-color:rgba(192,57,43,.4);box-shadow:0 0 20px rgba(192,57,43,.06)}
-.fb-card img{width:100%;height:160px;object-fit:cover;display:block;border-bottom:1px solid var(--border)}
-.fb-card-body{padding:14px;display:flex;flex-direction:column;gap:8px}
-.fb-card-text{font-size:13px;line-height:1.5;color:var(--white);
-  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-.fb-card-date{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-lt)}
-
 .product-card{background:var(--card);border:1px solid rgba(52,152,219,.5);border-radius:4px;padding:16px;display:flex;flex-direction:column;gap:12px;transition:border-color .18s,box-shadow .18s;position:relative}
 .product-card:hover{border-color:rgba(192,57,43,.4);box-shadow:0 0 20px rgba(192,57,43,.06)}
 .card-top{display:flex;align-items:flex-start;gap:12px}
@@ -239,73 +228,6 @@ footer strong{color:var(--gold)}
 
   <!-- CARDS -->
   <div class="cards-grid" id="cardsGrid"></div>
-
-  <!-- FACEBOOK UPDATES -->
-  <div class="title-row" style="margin-top:36px">
-    <h2 class="section-title">Latest From Facebook</h2>
-  </div>
-  <div class="fb-posts-grid">
-<!-- FB_POSTS_START -->
-<a class="fb-card" href="https://www.facebook.com/122118716547356918/posts/122118725229356918" target="_blank" rel="noopener">
-  
-  <div class="fb-card-body">
-    <span class="fb-card-date">Jul 08, 2026</span>
-    <p class="fb-card-text">Name: Low pH gel cleanser 
-Brand: Low pH
-Icon: 🎧
-Shopee: https://s.shopee.ph/BS2ec6AsT
-TikTok: https://vt.tiktok.com/ZS9MrwnxAbmCP-f4V7G/</p>
-  </div>
-</a>
-<a class="fb-card" href="https://www.facebook.com/122118716547356918/posts/122118683751356918" target="_blank" rel="noopener">
-  
-  <div class="fb-card-body">
-    <span class="fb-card-date">Jul 08, 2026</span>
-    <p class="fb-card-text">Product:Low pH gel cleanser 
-Brand:Low pH
-Icon:💦
-Shopee:https://s.shopee.ph/BS2ec6AsT
-Tiktok:https://vt.tiktok.com/ZS9MrwnxAbmCP-f4V7G/</p>
-  </div>
-</a>
-<a class="fb-card" href="https://www.facebook.com/reel/1668189741151742/" target="_blank" rel="noopener">
-  <img src="https://scontent-ord5-3.xx.fbcdn.net/v/t15.5256-10/741606459_2555437921574547_3661228038134541913_n.jpg?_nc_cat=110&amp;ccb=1-7&amp;_nc_sid=5fad0e&amp;_nc_ohc=X8y9bjgDZfQQ7kNvwFC5och&amp;_nc_oc=Adpfb5Ib4kNQwybcEdm1uBnAapJ52Whb-CKT0jFpwlX4HMlzuh2mEUxZD8fD2yUU2fE&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.xx&amp;edm=AKK4YLsEAAAA&amp;_nc_gid=-i7tE-wzc01HOoT4v9a2iw&amp;_nc_tpa=Q5bMBQGwmSJlzbq_23LQBkYJiQcjfltMTirkFAoS3C-ihdK8XIMlpaqFoTY-2LtlAJnaUpd7SswHOMQKhA&amp;oh=00_AQCqdIYTDJW0_NYa4Rb0_yfb9fF-1FWfeyLQuU9rQgJPow&amp;oe=6A53FC5F" alt="" loading="lazy"/>
-  <div class="fb-card-body">
-    <span class="fb-card-date">Jul 08, 2026</span>
-    <p class="fb-card-text">Order here 👇👇👇
-https://vt.tiktok.com/ZS9M23Ke975tT-aF7Vv/
-https://s.shopee.ph/3ViTADCnBq</p>
-  </div>
-</a>
-<a class="fb-card" href="https://www.facebook.com/reel/896759376167650/" target="_blank" rel="noopener">
-  <img src="https://scontent-ord5-3.xx.fbcdn.net/v/t15.5256-10/741857292_2276610062743513_3353724846992945311_n.jpg?_nc_cat=109&amp;ccb=1-7&amp;_nc_sid=5fad0e&amp;_nc_ohc=_ggHv3yqqPcQ7kNvwEvICjw&amp;_nc_oc=AdpeBQABVivNzoO1NOZ8pODvspHGu-YgZ-2-UUm_MGxiSX7fhKtKFXzYCByiFquRQIE&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.xx&amp;edm=AKK4YLsEAAAA&amp;_nc_gid=-i7tE-wzc01HOoT4v9a2iw&amp;_nc_tpa=Q5bMBQEwq9ovejEg3aPsv90ynp_7fah30eU3SD-DaW_xsN4b78TxbhrMwzKXz45lgleviNqV4_KlRkxzbg&amp;oh=00_AQBkZotdb09A6dkvyN0T6VOxisC2q609hJ6t-cesa-fIaw&amp;oe=6A53F43F" alt="" loading="lazy"/>
-  <div class="fb-card-body">
-    <span class="fb-card-date">Jul 08, 2026</span>
-    <p class="fb-card-text">Order here 👇👇👇
-https://vt.tiktok.com/ZS9M2TV6HbBED-6eIfR/
-https://s.shopee.ph/9pcWiiTco4</p>
-  </div>
-</a>
-<a class="fb-card" href="https://www.facebook.com/reel/1047184824480938/" target="_blank" rel="noopener">
-  <img src="https://scontent-ord5-1.xx.fbcdn.net/v/t15.5256-10/741035932_1411841091003397_1673086587397312283_n.jpg?_nc_cat=101&amp;ccb=1-7&amp;_nc_sid=5fad0e&amp;_nc_ohc=FxZVjJCXFkwQ7kNvwEwxxqa&amp;_nc_oc=Adpi6ydQvGL5VnK8_0HhdMwpnn8mtLedoRKe-cnB11qTAwCLQhY6YHcTDvMAXG3IKu4&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-1.xx&amp;edm=AKK4YLsEAAAA&amp;_nc_gid=-i7tE-wzc01HOoT4v9a2iw&amp;_nc_tpa=Q5bMBQEug-6ReF8TS6Gwr9c-_xPY8cizdTdxCSzEKVy-2wjzMtb1exPcROKUF1ekmpgYLAe2HMffZqSUGQ&amp;oh=00_AQCR5LK-40N1GlWhNuDGCmk6o5_v744J06P5LQSFPGPgGg&amp;oe=6A53EDCC" alt="" loading="lazy"/>
-  <div class="fb-card-body">
-    <span class="fb-card-date">Jul 08, 2026</span>
-    <p class="fb-card-text">Order here 👇👇👇
-https://vt.tiktok.com/ZS9M2cBT5x116-M4V4I/
-https://s.shopee.ph/5q6NwKiAZH</p>
-  </div>
-</a>
-<a class="fb-card" href="https://www.facebook.com/reel/2547138355748718/" target="_blank" rel="noopener">
-  <img src="https://scontent-ord5-3.xx.fbcdn.net/v/t15.5256-10/740788108_3913908798743570_2677273389709949831_n.jpg?_nc_cat=100&amp;ccb=1-7&amp;_nc_sid=5fad0e&amp;_nc_ohc=QREmDvAfvqwQ7kNvwE4O81L&amp;_nc_oc=Ado3IWN5LUjvQVV6CzoM_uDB0scmMQBKHpUcsZAuuA-YAhH7tp40HmzJZxcIIwa8Yfg&amp;_nc_zt=23&amp;_nc_ht=scontent-ord5-3.xx&amp;edm=AKK4YLsEAAAA&amp;_nc_gid=-i7tE-wzc01HOoT4v9a2iw&amp;_nc_tpa=Q5bMBQHBddnYsX6zBxHBrIR4X46PLMYmqTQLcsgnJ1eDbbzBnoWa7s4ADTWbVM3td76uX_F0vwIV0QE9HA&amp;oh=00_AQBUVMRCntxLtIewbHJPjhWVUaZMLuloVwpvw--3_03qVA&amp;oe=6A5407C3" alt="" loading="lazy"/>
-  <div class="fb-card-body">
-    <span class="fb-card-date">Jul 08, 2026</span>
-    <p class="fb-card-text">Order here 👇👇👇
-https://vt.tiktok.com/ZS9M2358CPdDe-5GwRU/
-https://s.shopee.ph/3ViTADCnBq</p>
-  </div>
-</a>
-<!-- FB_POSTS_END -->
-  </div>
 </main>
 </div>
 

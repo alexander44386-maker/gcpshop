@@ -25,9 +25,9 @@ jobs:
           FB_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
         run: |
-          curl -sf "https://graph.facebook.com/v25.0/${FB_PAGE_ID}/feed?access_token=${FB_TOKEN}&fields=id,message,created_time,full_picture,permalink_url&limit=10" \
-            -o posts.json
-          echo "Fetched posts:"
+          curl -s -o posts.json -w "HTTP status: %{http_code}\n" \
+            "https://graph.facebook.com/v25.0/${FB_PAGE_ID}/feed?access_token=${FB_TOKEN}&fields=id,message,created_time,full_picture,permalink_url&limit=10"
+          echo "Response body:"
           cat posts.json
 
       - name: Build HTML snippet

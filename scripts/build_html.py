@@ -3,7 +3,7 @@
 build_html.py
 
 Reads posts.json (raw output from the Facebook Graph API /feed endpoint)
-and injects a matching-styled HTML block into gcp-shop.html, between the
+and injects a matching-styled HTML block into index.html, between the
 markers:
 
     <!-- FB_POSTS_START -->
@@ -21,7 +21,7 @@ from datetime import datetime
 from pathlib import Path
 
 POSTS_JSON = Path("posts.json")
-SITE_HTML = Path("gcp-shop.html")   # adjust path if your file lives elsewhere
+SITE_HTML = Path("index.html")   # adjust path if your file lives elsewhere
 MAX_POSTS = 6                       # how many posts to show
 START_MARK = "<!-- FB_POSTS_START -->"
 END_MARK = "<!-- FB_POSTS_END -->"

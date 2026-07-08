@@ -1,14 +1,10 @@
 name: Sync Facebook Posts
 
-# When this runs:
-# - Every hour, automatically (edit the cron schedule below to change frequency)
-# - Any time you trigger it manually from the Actions tab ("Run workflow" button)
 on:
   schedule:
     - cron: '0 * * * *'   # every hour, on the hour (UTC)
   workflow_dispatch: {}    # lets you trigger it manually from GitHub's UI
 
-# Needed so the workflow is allowed to push commits back to the repo
 permissions:
   contents: write
 
@@ -16,17 +12,14 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      # 1. Check out your repo so the workflow can read/write files in it
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # 2. Set up Python to run the build script
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      # 3. Fetch the latest posts from the Graph API
       - name: Fetch posts from Facebook
         env:
           FB_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
@@ -37,16 +30,14 @@ jobs:
           echo "Fetched posts:"
           cat posts.json
 
-      # 4. Convert the raw JSON into an HTML snippet for the site
       - name: Build HTML snippet
         run: python scripts/build_html.py
 
-      # 5. Commit and push the updated file, but only if something actually changed
       - name: Commit updated posts
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add fb-posts.html
+          git add gcp-shop.html
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
